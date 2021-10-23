@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+
+actor "Cliente" as cliente
+actor "Entregador" as  entregador
+actor "Recepcionista" as recepcionista
+
+
+rectangle "Sistema Entrega de Pizza" {
+    usecase "Logar no Sistema" as case2
+    usecase "Fazer Pedido" as case3
+    usecase "Validar Pedido" as case4
+    usecase "Efetuar Pagamento" as case5
+    usecase "Ativar Localização" as case6
+    usecase "Receber Chamado" as case7
+    usecase "Finalizar Entrega" as case8
+    usecase "Avaliar Serviço" as case9
+
+}
+
+cliente --- case3
+cliente --- case5
+cliente --- case9
+
+
+recepcionista --- case2
+recepcionista --- case4
+
+entregador --- case7
+entregador --- case8
+
+
+(entregador) ..down.> recepcionista : extends
+
+
+case7 ..> case6 : <<include>>
+case8 ..> case9 : <<extends>>
+
+@enduml
